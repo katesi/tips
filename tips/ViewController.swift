@@ -39,6 +39,7 @@ class ViewController: UIViewController {
         var defaults = NSUserDefaults.standardUserDefaults()
         var defaultTipIndex = defaults.integerForKey(GlobalConstants.defaultTipIndexKey)
         tipControl.selectedSegmentIndex = defaultTipIndex
+        updateFields()
     }
     
 
@@ -47,7 +48,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onEditingChanged(sender: AnyObject) {
+    func updateFields()
+    {
         var billAmount = (billField.text as NSString).doubleValue
         
         var tipPercentages = [0.18, 0.2, 0.25]
@@ -64,6 +66,10 @@ class ViewController: UIViewController {
         tipLabel.text = String(format: "$%.2f", tipAmount)
         totalLabel.text = String(format: "$%.2f", total)
         
+    }
+    
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        updateFields()
     }
 
     @IBAction func onTap(sender: AnyObject) {
